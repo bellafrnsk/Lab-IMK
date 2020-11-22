@@ -13,19 +13,40 @@
 <h5 class="text-center" style="font-size: 20px; font-weight: 600;">SMA Harapan Bangsa</h5>
     </div>
 
-    <form>
-        <div class="form-group">
-          <label for="exampleInputEmail1">NISN</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          <small id="emailHelp" class="form-text text-muted">Masukkan NISN Anda..</small>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">LLogin</button>
-      </form>
+
+            <div class="col-lg-6">
+              <div class="tm-intro-text-container">
+                  <h2 class="tm-text-primary mb-4 tm-section-title">LOGIN</h2>
+                  <div class="container" >
+
+                          <form method = "post">
+                          <fieldset>
+                              <?php
+                              if ($error != ""){
+                              ?>
+                              <div class="form-group">
+                                      <div class="alert">
+                                      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                                      <?php echo $error; ?>
+                                      </div>
+                              </div>
+                              <?php
+                                  }
+                              ?>
+              
+                          <br>
+                          <div class="form-group">
+                              <input type="text" class="form-control" placeholder="username" name="username" required>
+                          </div>
+                          <div class="form-group">
+                              <input type="password" class="form-control" placeholder="password" name="password" required>
+                          </div>	
+                          <div class="form-group">
+                              <button type="submit" class="btn btn-md btn-primary btn-block" style=>Login</button>
+                          </div>
+                          </div>
+                          </fieldset>
+                          </form>
+                      </div>
+                  </div>
+          </div>
