@@ -1,3 +1,10 @@
+<?php
+
+	require_once 'includes/koneksi.php';
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

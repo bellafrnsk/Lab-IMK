@@ -1,3 +1,40 @@
+<?php
+include ("includes/koneksi.php");
+
+if(isset($_POST['btnlogin']))
+{
+$user_login=$_POST['NISN'];
+$pass_login=$_POST['Password'];
+
+$sql = "SELECT * FROM akun WHERE NISN = '{$nisn_login}' and Password = '{$pass_login}'";
+$query = mysqli_query($koneksi, $sql);
+$count = mysqli_num_rows($query);
+
+if(!$query){
+die("Query gagal " . mysqli_error($koneksi));
+}
+if(!empty($nisn_login) && (!empty($pass_login))){
+if($count==0){
+  echo "<font color='white'>NISN/password tidak terdaftar</font><br>";
+} else {
+while($row = mysqli_fetch_array($query)){
+$user = $row['NISN'];
+$pass = $row['Password'];
+$nama = $row['Nama'];
+$email = $row['Email'];
+}
+
+}
+}else {
+if(empty($nisn_login) || empty($pass_login)){
+echo "<font color='white'>NISN dan password tidak boleh kosong</font><br>";
+}
+}
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +63,7 @@
                               <input type="password" class="form-control" placeholder="Password" name="Password" required>
                           </div>	
                           <div class="form-group">
-                              <button type="submit" class="btn btn-md btn-success btn-block" style=>Login</button>
+                              <button type="submit" class="btn btn-md btn-success btn-block" name="btnlogin">Login</button>
                           </div>
                           <div class="form-group">
                             <h2 class="text-center" style="font-size: 13px;">Belum punya akun? <a href="#">Sign In </a></a></h2>
