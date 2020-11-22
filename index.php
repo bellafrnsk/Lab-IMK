@@ -30,8 +30,6 @@ echo "<font color='white'>NISN dan password tidak boleh kosong</font><br>";
 }
 }
 }
-
-
 ?>
 
 <!DOCTYPE html>
