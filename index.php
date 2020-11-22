@@ -21,7 +21,7 @@ while($row = mysqli_fetch_array($query)){
 $user = $row['NISN'];
 $pass = $row['Password'];
 $nama = $row['Nama'];
-$email = $row['Email'];
+
 }
 }
 }else {
