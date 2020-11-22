@@ -1,6 +1,22 @@
 <?php
 
-	require_once 'includes/koneksi.php';
+    require_once 'includes/koneksi.php';
+    
+    $username = $_POST['username'];
+	$password = $_POST['sandi'];
+	$nama	=$_POST['nama'];
+	$email	=$_POST['email'];
+
+	$sql = "INSERT INTO akun (username,password,nama,email,level) VALUES ('$username','$password','$nama','$email','$level')";
+
+	if($koneksi->query($sql)===TRUE){
+		echo "<h3 align=center>Registrasi Akun Anda Berhasil</h2>";
+		
+	}else{
+		echo "Terjadi Kesalahan: ".$sql."</br>".$koneksi->error;
+	}
+
+	$koneksi->close();
 
 ?>
 

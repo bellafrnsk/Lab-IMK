@@ -23,7 +23,6 @@ $pass = $row['Password'];
 $nama = $row['Nama'];
 $email = $row['Email'];
 }
-
 }
 }else {
 if(empty($nisn_login) || empty($pass_login)){
