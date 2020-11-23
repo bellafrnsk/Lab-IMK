@@ -6,65 +6,10 @@
     <title>Klub Belajar</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-	<meta charset="utf-8">
-	<title>DAFTAR</title>
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/style.css">
-	<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('#frmDaftar').validate({
-			rules: {
-				pengguna: {
-					minlength:10,
-					maxlength:10
-				},
-				sandi:{
-					minlength:8,
-					maxlength:20
-				},
-				sandi2:{
-					equalTo:"#sandi"
-				},
-				nama:{
-					minlength:10,
-					maxlength:20
-				},
-				email: {
-				email: true
-			}
-			},
-			messages: {
-				pengguna: {
-					required: "NISN harus diisi",
-					minlength: "NISN Harus 10 karakter",
-					maxlength: "NISN Harus 10 karakter"
-				},
-				sandi:{
-					required:"Password harus diisi",
-					minlength:"Panjang password minimal 8 karakter",
-				},
-				sandi2:{
-					equalTo:"Konfirmasi Password Tidak Sesuai Dengan Password"
-				},
-				nama:{
-					required: "Nama harus diisi",
-					minlength: "Nama minimal 10 karakter",
-					maxlength: "Nama maximal 20 karakter"
-					},
-				email: {
-					required: "Email harus diisi",
-					email: "Format Email tidak sesuai"
-				}
-			}
-		});
-		});
-	</script>
-</head>
+	
 <body>
-	<form action="profil.php" method="post" id="frmDaftar">
+
+	<form action="register.php" method="post" id="frmDaftar">
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Klub Belajar</title>
@@ -88,22 +33,15 @@
 			<div class="form-group row">
                             <label for="staticEmail" class="col-sm-2 col-form-label">NISN</label>
                             <div class="col-sm-6" class="center">
-                            <input type="text" onkeypress="return Angka(event)" class="form-control" placeholder="NISN" name="pengguna" required>
-                          </div></div>
- <script>
-   function Angka(evt) {
-     var charCode = (evt.which) ? evt.which : event.keyCode
-      if (charCode > 31 && (charCode < 48 || charCode > 57))
-
-       return false;
-     return true;
-   }
- </script>
-
-<div class="form-group row">
+                            <input type="number" ng-model="number" class="form-control" placeholder="NISN" name="pengguna" required
+							onKeyPress="if(this.value.length==10) return false;" />
+							</div></div>
+						  <div class="form-group row">
                             <label for="staticEmail" class="col-sm-2 col-form-label">Password</label>
                           <div class="col-sm-6">
-                              <input id="password" type="password" class="form-control" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Minimal 6 Karakter' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;" placeholder="Password" name="sandi" required>
+                              <input id="password" type="password" class="form-control" pattern="^\S{6,}$" onchange="this.setCustomValidity
+							  (this.validity.patternMismatch ? 'Minimal 6 Karakter' : ''); if(this.checkValidity()) 
+							  form.password_two.pattern = this.value;" placeholder="Password" name="sandi" required>
                           </div></div>	
 
                           <div class="form-group row">
