@@ -24,23 +24,35 @@
                           <div class="form-group row">
                             <label for="staticEmail" class="col-sm-2 col-form-label">NISN</label>
                             <div class="col-sm-6" class="center">
-                            <input type="number" class="form-control" placeholder="NISN" name="NISN" required></pre>
+                            <input type="text" onkeypress="return Angka(event)" class="form-control" placeholder="NISN" name="NISN" required>
                           </div></div>
+ <script>
+   function Angka(evt) {
+     var charCode = (evt.which) ? evt.which : event.keyCode
+      if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+       return false;
+     return true;
+   }
+ </script>
                           <div class="form-group row">
                             <label for="staticEmail" class="col-sm-2 col-form-label">Nama</label>
                             <div class="col-sm-6" class="center">
                             <input type="text" class="form-control" placeholder="Nama" name="Nama" required></pre>
-                          </div></div>
+                          </div></div>	
+
                           <div class="form-group row">
                             <label for="staticEmail" class="col-sm-2 col-form-label">Password</label>
                           <div class="col-sm-6">
-                          <input id="password" name="password" type="password" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Minimal 6 Karakter' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;" placeholder="Password" required>
+                              <input id="password" type="password" class="form-control" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Minimal 6 Karakter' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;" placeholder="Password" name="Password" required>
                           </div></div>	
+
                           <div class="form-group row">
                             <label for="staticEmail" class="col-sm-2 col-form-label">Konfirmasi Password</label>
                           <div class="col-sm-6">
-                          <input id="password_two" name="password_two" type="password" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Masukkan Password Yang Sama' : '');" placeholder="Konfirmasi Password" required>
-                        </div></div>	
+                              <input id="password_two" type="password" class="form-control" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Masukkan Password Yang Sama' : '');" placeholder="Konfirmasi Password" name="Konfirmasi Password" required>
+                          </div></div>	 
+
                           <div class="form-group">
                               <button type="submit" class="btn btn-md btn-success btn-block" style=>Sign In</button>
                           </div>
