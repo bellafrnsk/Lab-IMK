@@ -8,7 +8,7 @@
 	$host = 'localhost';
 	$user = 'root';
 	$pass ='';
-	$database = 'klub';
+	$database = 'lab-imk';
 
 	$koneksi = mysqli_connect($host, $user, $pass, $database);
 

@@ -53,9 +53,20 @@ echo "<font color='white'>NISN dan password tidak boleh kosong</font><br>";
                           <form method = "post">
                           <fieldset>     
                           <br><br><br>
-                          <div class="form-group" class="center">
-                            <pre><input type="number" class="form-control" placeholder="NISN" name="NISN" required></pre>
-                          </div>
+                          <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">NISN</label>
+                            <div class="col-sm-6" class="center">
+                            <input type="text" onkeypress="return Angka(event)" class="form-control" placeholder="NISN" name="NISN" required>
+                          </div></div>
+ <script>
+   function Angka(evt) {
+     var charCode = (evt.which) ? evt.which : event.keyCode
+      if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+       return false;
+     return true;
+   }
+ </script>
                           <div class="form-group">
                               <input type="password" class="form-control" placeholder="Password" name="Password" required>
                           </div>	
