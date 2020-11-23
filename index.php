@@ -1,7 +1,47 @@
+<?php
+include ("koneksi.php");
+
+if(isset($_POST['btnlogin']))
+{
+	$user_login=$_POST['pengguna'];
+	$pass_login=$_POST['sandi'];
+
+	$sql = "SELECT * FROM akun WHERE NISN = '{$user_login}' and Password ='{$pass_login}'";
+	$query = mysqli_query($koneksi,$sql);
+	$count = mysqli_num_rows($query);
+
+	if(!$query){
+		die("Query gagal" .mysqli_error($koneksi));
+	}
+	if (!empty($user_login) && (!empty($pass_login))){
+		if ($count==0){
+			echo "NISN tidak ditemukan";
+		} else {
+			while ($row = mysqli_fetch_array($query)){
+				$user = $row ['NISN'];
+				$pass = $row['Password'];
+				$nama = $row['Nama'];
+			}
+			if($user_login == $user && $pass_login == $pass){
+				header("Location:profil.html");
+				$_SESSION['NISN'] = $user;
+				$_SESSION['Nama'] = $nama;
+			} else {
+				echo "NISN tidak ditemukan";
+			}
+		}
+	}
+	else {
+		if(empty($user_login) || empty($pass_login)){
+			echo "NISN atau Password tidak boleh kosong";
+		}
+	}
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Klub Belajar</title>
@@ -16,16 +56,13 @@
 
 
     <div class="container">
-        <br><h5 class="text-center" style="font-size: 30px; font-weight: 600;">Sign In</h5>
-        <div class="col-md-8 col-md-offset-8">
+        <div class="col-md-6 col-md-offset-6">
                           <form method = "post">
                           <fieldset>     
                           <br><br><br>
-                          <div class="form-group row">
-                            <label for="staticEmail" class="col-sm-2 col-form-label">NISN</label>
-                            <div class="col-sm-6" class="center">
-                            <input type="text" onkeypress="return Angka(event)" class="form-control" placeholder="NISN" name="NISN" required>
-                          </div></div>
+						  <div class="form-group">
+                            <input type="text" onkeypress="return Angka(event)" class="form-control" placeholder="NISN" name="pengguna" required>
+                          </div>
  <script>
    function Angka(evt) {
      var charCode = (evt.which) ? evt.which : event.keyCode
@@ -34,31 +71,20 @@
        return false;
      return true;
    }
- </script>
-                          <div class="form-group row">
-                            <label for="staticEmail" class="col-sm-2 col-form-label">Nama</label>
-                            <div class="col-sm-6" class="center">
-                            <input type="text" class="form-control" placeholder="Nama" name="Nama" required></pre>
-                          </div></div>	
-
-                          <div class="form-group row">
-                            <label for="staticEmail" class="col-sm-2 col-form-label">Password</label>
-                          <div class="col-sm-6">
-                              <input id="password" type="password" class="form-control" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Minimal 6 Karakter' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;" placeholder="Password" name="Password" required>
-                          </div></div>	
-
-                          <div class="form-group row">
-                            <label for="staticEmail" class="col-sm-2 col-form-label">Konfirmasi Password</label>
-                          <div class="col-sm-6">
-                              <input id="password_two" type="password" class="form-control" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Masukkan Password Yang Sama' : '');" placeholder="Konfirmasi Password" name="Konfirmasi Password" required>
-                          </div></div>	 
-
+</script>
                           <div class="form-group">
-                              <button type="submit" class="btn btn-md btn-success btn-block" style=>Sign In</button>
+                              <input type="password" class="form-control" placeholder="Password" name="sandi" required>
+                          </div>	
+                          <div class="form-group">
+                              <button type="submit" class="btn btn-md btn-success btn-block" name="btnlogin">Login</button>
                           </div>
+                          <div class="form-group">
+                            <h2 class="text-center" style="font-size: 13px;">Belum punya akun? <a href="signin.php">Sign In </a></a></h2>
+                        </div>
                         </fieldset>
                           </form>
                       </div>
                   </div>
-</body>
-</html>
+
+
+        
