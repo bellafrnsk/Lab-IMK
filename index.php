@@ -3,33 +3,43 @@ include ("koneksi.php");
 
 if(isset($_POST['btnlogin']))
 {
-$user_login=$_POST['NISN'];
-$pass_login=$_POST['Password'];
+	$user_login=$_POST['pengguna'];
+	$pass_login=$_POST['sandi'];
 
-$sql = "SELECT * FROM akun WHERE NISN = '{$nisn_login}' and Password = '{$pass_login}'";
-$query = mysqli_query($koneksi, $sql);
-$count = mysqli_num_rows($query);
+	$sql = "SELECT * FROM akun WHERE NISN = '{$user_login}' and Password ='{$pass_login}'";
+	$query = mysqli_query($koneksi,$sql);
+	$count = mysqli_num_rows($query);
 
-if(!$query){
-die("Query gagal " . mysqli_error($koneksi));
+	if(!$query){
+		die("Query gagal" .mysqli_error($koneksi));
+	}
+	if (!empty($user_login) && (!empty($pass_login))){
+		if ($count==0){
+			echo "Username not found";
+		} else {
+			while ($row = mysqli_fetch_array($query)){
+				$user = $row ['NISN'];
+				$pass = $row['Password'];
+				$nama = $row['Nama'];
+				$email = $row['Email'];
+			}
+			if($user_login == $user && $pass_login == $pass){
+				header("Location:profil.html");
+				$_SESSION['NISN'] = $user;
+				$_SESSION['Nama'] = $nama;
+				$_SESSION['Email'] = $email;
+			} else {
+				echo "User tidak ditemukan";
+			}
+		}
+	}
+	else {
+		if(empty($user_login) || empty($pass_login)){
+			echo "Username atau Password tidak boleh kosong";
+		}
+	}
 }
-if(!empty($nisn_login) && (!empty($pass_login))){
-if($count==0){
-  echo "<font color='white'>NISN/password tidak terdaftar</font><br>";
-} else {
-while($row = mysqli_fetch_array($query)){
-$user = $row['NISN'];
-$pass = $row['Password'];
-$nama = $row['Nama'];
-$email = $row['Email'];
-}
-}
-}else {
-if(empty($nisn_login) || empty($pass_login)){
-echo "<font color='white'>NISN dan password tidak boleh kosong</font><br>";
-}
-}
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -53,22 +63,11 @@ echo "<font color='white'>NISN dan password tidak boleh kosong</font><br>";
                           <form method = "post">
                           <fieldset>     
                           <br><br><br>
-                          <div class="form-group row">
-                            <label for="staticEmail" class="col-sm-2 col-form-label">NISN</label>
-                            <div class="col-sm-6" class="center">
-                            <input type="text" onkeypress="return Angka(event)" class="form-control" placeholder="NISN" name="NISN" required>
-                          </div></div>
- <script>
-   function Angka(evt) {
-     var charCode = (evt.which) ? evt.which : event.keyCode
-      if (charCode > 31 && (charCode < 48 || charCode > 57))
-
-       return false;
-     return true;
-   }
- </script>
+                          <div class="form-group" class="center">
+                            <pre><input type="number" class="form-control" placeholder="nisn" name="pengguna" required></pre>
+                          </div>
                           <div class="form-group">
-                              <input type="password" class="form-control" placeholder="Password" name="Password" required>
+                              <input type="password" class="form-control" placeholder="password" name="sandi" required>
                           </div>	
                           <div class="form-group">
                               <button type="submit" class="btn btn-md btn-success btn-block" name="btnlogin">Login</button>
