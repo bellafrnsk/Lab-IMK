@@ -23,7 +23,8 @@ if(isset($_POST['btnlogin']))
 				$nama = $row['Nama'];
 			}
 			if($user_login == $user && $pass_login == $pass){
-				header("Location:profil.html");
+				echo "<script> alert('Anda Sukses Login'); </script>";
+        echo "<script>location='profil_login.php';</script>";
 				$_SESSION['NISN'] = $user;
 				$_SESSION['Nama'] = $nama;
 			} else {
@@ -37,6 +38,7 @@ if(isset($_POST['btnlogin']))
 		}
 	}
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +47,8 @@ if(isset($_POST['btnlogin']))
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Klub Belajar</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -61,7 +64,7 @@ if(isset($_POST['btnlogin']))
                           <fieldset>     
                           <br><br><br>
 						  <div class="form-group">
-                            <input type="text" onkeypress="return Angka(event)" class="form-control" placeholder="NISN" name="pengguna" required>
+      <input type="text" onkeypress="return Angka(event)" class="form-control"placeholder="NISN" name="pengguna" required>
                           </div>
  <script>
    function Angka(evt) {
